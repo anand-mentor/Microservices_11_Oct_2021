@@ -1,0 +1,29 @@
+db.employees.insert({
+    "name" : "Tom",
+    "salary" : 10000,
+    "job": "Clerk",
+    "department" : {
+        "id" : 1,
+        "name" : "Sales"
+    }
+})
+
+db.employees.insert({
+    "name" : "Jerry",
+    "salary" : 20000,
+    "job": "Manager",
+    "department" : {
+        "id" : 2,
+        "name" : "Production"
+    }
+})
+
+db.employees.insert({
+    "name" : "Ivan",
+    "salary" : 30000,
+    "job": "Labour",
+    "department" : {
+        "id" : 1,
+        "name" : "Sales"
+    }
+})
