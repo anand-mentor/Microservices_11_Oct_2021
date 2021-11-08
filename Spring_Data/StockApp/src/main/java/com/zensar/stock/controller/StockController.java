@@ -1,6 +1,5 @@
 package com.zensar.stock.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -47,32 +47,40 @@ public class StockController {
 		return stockService.createNewStock(stock);
 	}
 
-	/*
-	///stock/id?stockId=2
-	@GetMapping(value="/stock/id", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Stock getStockById(@RequestParam("stockId") int stockId, @RequestHeader("auth-token") String authToken) {
-		System.out.println("AUTH-TOKEN - " + authToken);
-		for(Stock stock: stocks) {
-			if(stock.getId() == stockId) { //Stock found
-				return stock;
-			}
-		}
-		return null;
-	}
-	*/
-	
-	
-	@GetMapping(value="/stock/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Stock getStockById(@PathVariable("id") int stockId) {
-		return stockService.getStockById(stockId);
-	}
-	
 	@GetMapping(value="/stock", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Stock> getAllStock() {
 		return stockService.getAllStock();
 	}
 	
-	
+	@GetMapping(value="/stock/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Stock> getStocksByName(@PathVariable("name") String name) {
+		return stockService.findByName(name);
+	}
+
+	@GetMapping(value="/stock/marketname/{marketname}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Stock> getStocksByMarketName(@PathVariable("marketname") String marketname) {
+		return stockService.findByMarketName(marketname);
+	}
+
+	@GetMapping(value="/stock/marketname/{marketname}/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Stock> getStocksByNameAndMarketName(@PathVariable("marketname") String marketname, @PathVariable("name") String name) {
+		return stockService.findByNameAndMarketName(name, marketname);
+	}
+
+	@GetMapping(value="/stock/name/like/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Stock> getStocksByNameLike(@PathVariable("name") String name) {
+		return stockService.findByNameLike(name);
+	}
+
+	@GetMapping(value="/stock/name/sort/{sortType}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Stock> getStocksOrderByName(@PathVariable("sortType") String sortType) {
+		return stockService.findByOrderByName(sortType);
+	}
+
+	@GetMapping(value="/stock/page/{startIndex}/{records}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Stock> getStocksByPage(@PathVariable("startIndex") int startIndex, @PathVariable("records") int records) {
+		return stockService.findByPage(startIndex, records);
+	}
 }
 
 
