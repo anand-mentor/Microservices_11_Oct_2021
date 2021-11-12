@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.zensar.stock.dto.Stock;
 import com.zensar.stock.entity.StockEntity;
+import com.zensar.stock.exception.InvalidStockIdException;
 import com.zensar.stock.repository.StockRepository;
 
-@Service
+@Service(value = "JPA_SERVICE")
 public class StockServiceImpl implements StockService {
 
 	@Autowired
@@ -60,7 +60,7 @@ public class StockServiceImpl implements StockService {
 			Stock stockDto = this.modelMapper.map(stockEntity, Stock.class);
 			return stockDto;
 		}
-		return null;
+		throw new InvalidStockIdException(""+stockId);
 	}
 
 	@Override
@@ -71,7 +71,8 @@ public class StockServiceImpl implements StockService {
 			Stock stockDto = this.modelMapper.map(stockEntity, Stock.class);
 			return stockDto;
 		}
-		return null;
+		throw new InvalidStockIdException(""+stockId);
+		//return null;
 	}
 
 	@Override
@@ -89,31 +90,31 @@ public class StockServiceImpl implements StockService {
 		return stockDtoList;
 	}
 
-	@Override
+	//@Override
 	public List<Stock> findByMarketName(String marketName) {
 		List<StockEntity> stockEntityList = stockRepository.findByMarketName(marketName);
 		return getStockDtoList(stockEntityList);
 	}
 
-	@Override
+	//@Override
 	public List<Stock> findByName(String name) {
 		List<StockEntity> stockEntityList = stockRepository.findByName(name);
 		return getStockDtoList(stockEntityList);
 	}
 
-	@Override
+	//@Override
 	public List<Stock> findByNameAndMarketName(String name, String marketName) {
 		List<StockEntity> stockEntityList = stockRepository.findByNameAndMarketName(name, marketName);
 		return getStockDtoList(stockEntityList);
 	}
 
-	@Override
+	//@Override
 	public List<Stock> findByNameLike(String name) {
 		List<StockEntity> stockEntityList = stockRepository.findByNameLike(name);
 		return getStockDtoList(stockEntityList);
 	}
 
-	@Override
+	//@Override
 	public List<Stock> findByOrderByName(String sortType) {
 		List<StockEntity> stockEntityList = null;
 		if("ASC".equalsIgnoreCase(sortType)) {
@@ -134,7 +135,7 @@ public class StockServiceImpl implements StockService {
 		return getStockDtoList(stockEntityList);
 	}
 
-	@Override
+	//@Override
 	public List<Stock> findByPage(int startIndex, int records) {
 		Pageable pageWithFewRecords = PageRequest.of(startIndex, records);
 		Page<StockEntity> stockEntityPage = stockRepository.findAll(pageWithFewRecords);

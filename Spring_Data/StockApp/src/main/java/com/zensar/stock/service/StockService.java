@@ -12,7 +12,7 @@ public interface StockService {
 	public Stock updateStock(int stockId, Stock stock);
 	public Stock getStockById(int stockId);
 	public List<Stock> getAllStock();
-
+/*
 	List<Stock> findByMarketName(String marketName);
 	List<Stock> findByName(String name);
 	List<Stock> findByNameAndMarketName(String name, String marketName);
@@ -22,4 +22,7 @@ public interface StockService {
 	
 	List<Stock> findByNameLike(String name);	
 	List<Stock> findByOrderByName(String sortType);
-	List<Stock> findByPage(int startIndex, int records);}
+	List<Stock> findByPage(int startIndex, int records);
+*/	
+}
+	
