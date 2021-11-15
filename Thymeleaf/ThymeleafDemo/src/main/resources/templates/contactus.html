@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link th:href="@{/css/main.css}" rel="stylesheet">
+<script type="text/javascript" th:src="@{/js/main.js}" ></script>
+</head>
+<body>
+<h1>Contact us</h1>
+<input type="button" value="Show" onclick="showAlert()">
+<br><br>
+Washington:
+<ul th:each="user:${users}">
+	<li th:if="${user.location}=='Washington'" th:text="${user}"></li>
+</ul>
+Excluding Washington:
+<ul th:each="user:${users}">
+	<li th:unless="${user.location}=='Washington'" th:text="${user}"></li>
+</ul>
+<br><br>
+Switch
+<div th:each="user:${users}">
+	<div th:switch="${user.location}">
+		<p th:case="'New York'">New York location</p>
+		<p th:case="'Washington'">Washington location</p>
+		<p th:case="'London'">London location</p>
+		<p th:case="*">Location not found</p>
+	</div>
+</div>
+</body>
+</html>
