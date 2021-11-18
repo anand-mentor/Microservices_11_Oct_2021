@@ -1,6 +1,6 @@
 package com.spring.json;
 
-import java.util.Set;
+import java.util.List;
 
 public class Question {
 
@@ -8,14 +8,14 @@ public class Question {
 	
 	private String qusDesc;
 	
-	private Set<Answer> answers;
+	private List<Answer> answers;
 	
 	public Question() {}
 	
 	public Question(String qusDesc) {
 		this.qusDesc = qusDesc;
 	}
-	public Question(String qusDesc, Set<Answer> answers) {
+	public Question(String qusDesc, List<Answer> answers) {
 		this.qusDesc = qusDesc;
 		this.answers = answers;
 	}
@@ -36,11 +36,11 @@ public class Question {
 		this.qusDesc = qusDesc;
 	}
 
-	public Set<Answer> getAnswers() {
+	public List<Answer> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(Set<Answer> answers) {
+	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
 	

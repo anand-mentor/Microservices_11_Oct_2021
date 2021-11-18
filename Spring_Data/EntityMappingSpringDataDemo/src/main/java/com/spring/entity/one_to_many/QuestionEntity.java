@@ -1,5 +1,6 @@
 package com.spring.entity.one_to_many;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,16 +24,16 @@ public class QuestionEntity {
 	@Column(name="description")
 	private String qusDesc;
 	
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE}, 
+	@OneToMany(cascade={CascadeType.ALL}, 
 			fetch=FetchType.LAZY, mappedBy = "question")
-	private Set<AnswerEntity> answers;
+	private List<AnswerEntity> answers;
 	
 	public QuestionEntity() {}
 	
 	public QuestionEntity(String qusDesc) {
 		this.qusDesc = qusDesc;
 	}
-	public QuestionEntity(String qusDesc, Set<AnswerEntity> answers) {
+	public QuestionEntity(String qusDesc, List<AnswerEntity> answers) {
 		this.qusDesc = qusDesc;
 		this.answers = answers;
 	}
@@ -53,11 +54,11 @@ public class QuestionEntity {
 		this.qusDesc = qusDesc;
 	}
 
-	public Set<AnswerEntity> getAnswers() {
+	public List<AnswerEntity> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(Set<AnswerEntity> answers) {
+	public void setAnswers(List<AnswerEntity> answers) {
 		this.answers = answers;
 	}
 	

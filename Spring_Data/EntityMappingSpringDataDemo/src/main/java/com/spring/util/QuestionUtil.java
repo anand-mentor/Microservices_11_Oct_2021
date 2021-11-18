@@ -21,8 +21,8 @@ public class QuestionUtil {
 	}
 	
 	public static Question convertQuestionEntityIntoQuestion(QuestionEntity questionEntity) {
-		Set<AnswerEntity> answerEntities = questionEntity.getAnswers();
-		Set<Answer> answers = new HashSet<Answer>();
+		List<AnswerEntity> answerEntities = questionEntity.getAnswers();
+		List<Answer> answers = new ArrayList<Answer>();
 		Question question = new Question(questionEntity.getQusDesc());
 		for(AnswerEntity answerEntity: answerEntities)
 			answers.add(convertAnswerEntityIntoAnswer(answerEntity));
@@ -33,8 +33,8 @@ public class QuestionUtil {
 
 	public static QuestionEntity convertQuestionIntoQuestionEntity(Question question) {
 		QuestionEntity questionEntity = new QuestionEntity(question.getQusDesc());
-		Set<Answer> answers = question.getAnswers();
-		Set<AnswerEntity> answerEntities = new HashSet<AnswerEntity>();
+		List<Answer> answers = question.getAnswers();
+		List<AnswerEntity> answerEntities = new ArrayList<AnswerEntity>();
 		for(Answer answer: answers)
 			answerEntities.add(convertAnswerIntoAnswerEntity(answer, questionEntity));
 		questionEntity.setAnswers(answerEntities);

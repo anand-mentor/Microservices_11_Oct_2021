@@ -19,6 +19,7 @@ public class StudentEntity {
 
 	private long studentId;
 	private String studentName;
+	
 	private Set<CourseEntity> courses = new HashSet<CourseEntity>();
 
 	@Override
