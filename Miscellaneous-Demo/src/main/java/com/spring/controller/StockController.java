@@ -2,6 +2,7 @@ package com.spring.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,5 +48,21 @@ public class StockController {
 	public @ResponseBody StockV2 getStockAcceptV2() {
 		return new StockV2("Zensar", "NSE");
 	}
+}
+class StockV1 {
+	private String name;
+	public StockV1(String name) { this.name = name; }
+	public StockV1() {}
+	public String getName() { return this.name; }
+	public String toString() { return "Name: " + name; }
+}
+class StockV2 {
+	private String name;
+	private String market;
+	public StockV2(String name, String market) { this.name = name; this.market = market; }
+	public StockV2() {}
+	public String getName() { return this.name; }
+	public String getMarket() { return this.market; }
+	public String toString() { return "Name: " + name + ", Market: " + market; }
 }
 
